@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { ThemeProvider, newskitLightTheme, Link, Block, Visible, Divider, DateTime, Grid, Cell, Form, TextInput, Button } from 'newskit'
+import { ThemeProvider, newskitLightTheme, Block, Link, Visible, Divider, DateTime, Grid, Cell } from 'newskit'
 
-// timing for yarn dev: 28.21sec
-// timing for yarn dev with getServerSideProps: 31.01sec
 export default function Home() {
   return (
     <ThemeProvider theme={newskitLightTheme}>
@@ -16,9 +14,9 @@ export default function Home() {
 
         <main className={styles.main}>
           <h1 className={styles.title}>
-            This is Home Page
-            <Link href="/next-page">
-              Go to next page
+            This is NEXT page
+            <Link href="/">
+              Go back to home
             </Link>
           </h1>
 
@@ -31,21 +29,23 @@ export default function Home() {
           >
             <Cell xs={12} md={10} data-testid="MainColumn">
               <Visible md lg>
-              <Form onSubmit={() => {}}>
-                <Block overrides={{spaceStack: 'space050'}}>
-                  <TextInput
-                    label="Email"
-                    name="email"
-                  />
+                <Block
+                  data-testid="Block"
+                  aria-label="Divider"
+                  overrides={{ spaceStack: 'space030' }}
+                >
+                  <Divider />
                 </Block>
-                <Block overrides={{spaceStack: 'space050'}}>
-                  <TextInput
-                    label="Username"
-                    name="username"
-                  />
+              </Visible>
+
+              <Visible md lg>
+                <Block
+                  data-testid="Block"
+                  aria-label="Divider"
+                  overrides={{ spaceStack: 'space030' }}
+                >
+                  <Divider />
                 </Block>
-                <Button type="submit">Submit</Button>
-              </Form>
               </Visible>
               <Block
                 data-testid="Block"
@@ -74,13 +74,4 @@ export default function Home() {
       </div>
     </ThemeProvider>
   )
-}
-
-
-export async function getServerSideProps() {
-
-  return {
-    props: {
-    },
-  }
 }
